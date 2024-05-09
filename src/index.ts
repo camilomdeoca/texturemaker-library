@@ -6,4 +6,4 @@ import { SolidColorNode } from "./nodes/generators/solidcolor.js";
 
 export { PerlinNoiseNode, SolidColorNode };
 export { CombineNode, ColorCorrectionNode };
-export { Color }
+export { Color };
