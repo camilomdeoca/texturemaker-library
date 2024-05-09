@@ -1,0 +1,24 @@
+{
+  "name": "texturemaker-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "npx nodemon --watch test/server.js test/server.js & tsc -w & npx nodemon -e js --ignore test/bundle.js --ignore src/ --exec \"npx esbuild test/test.js --bundle --outfile=test/bundle.js\""
+  },
+  "author": "Camilo Montes de Oca",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.20.2",
+    "nodemon": "^3.1.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "noises-library": "github:camilomdeoca/noises-library",
+    "vectors-typescript": "github:camilomdeoca/vectors-typescript"
+  }
+}
