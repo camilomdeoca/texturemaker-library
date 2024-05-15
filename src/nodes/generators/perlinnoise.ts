@@ -3,6 +3,9 @@ import { Color } from "../../color.js";
 import { IGeneratorNode } from "../generatornode.js";
 import { Perlin } from "noises-library";
 
+// TODO: Instead of recreating when a parameter changes set a boolean value that indicates that the
+// Perlin object needs to be recreated
+
 export class PerlinNoiseNode implements IGeneratorNode {
   constructor() {
     this.recreatePerlinObject();
@@ -13,9 +16,21 @@ export class PerlinNoiseNode implements IGeneratorNode {
   }
 
   private recreatePerlinObject(): void {
-    this._perlinNoise = new Perlin(this.octavesWeights, this.seed, {
+    this._perlinNoise = new Perlin({
+      startingOctaveIndex: 0,
+      octavesWeights: this.octavesWeights,
+      seed: this.seed,
       scale: this._scale
     });
+  }
+
+  public set startingOctaveIndex(startingOctaveIndex: number) {
+      this._startingOctaveIndex = startingOctaveIndex;
+      this.recreatePerlinObject();
+  }
+
+  public get startingOctaveIndex(): number {
+      return this._startingOctaveIndex;
   }
 
   public set scale(scale: Vector2) {
@@ -58,6 +73,7 @@ export class PerlinNoiseNode implements IGeneratorNode {
     return weights;
   }
 
+  private _startingOctaveIndex: number = 4;
   private _scale: Vector2 = new Vector2(1.0, 1.0);
   private _perlinNoise: Perlin;
   private _seed: string = undefined;
