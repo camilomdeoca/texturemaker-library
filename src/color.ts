@@ -1,3 +1,5 @@
+import { lerp } from "./maths.js";
+
 export class Color {
   public constructor(
     r: number,
@@ -43,6 +45,15 @@ export class Color {
     return result;
   }
 
+  public static lerp(col1: Color, col2: Color, factor: number): Color {
+    return new Color(
+      Math.sqrt(lerp(col1.r**2, col2.r**2, factor)),
+      Math.sqrt(lerp(col1.g**2, col2.g**2, factor)),
+      Math.sqrt(lerp(col1.b**2, col2.b**2, factor)),
+      lerp(col1.a, col2.a, factor),
+    );
+  }
+
   public r: number; // in range [0, 1]
   public g: number; // in range [0, 1]
   public b: number; // in range [0, 1]
@@ -70,6 +81,15 @@ export class HslColor {
       f(8),
       f(4),
       this.a
+    );
+  }
+
+  public static lerp(col1: HslColor, col2: HslColor, factor: number): HslColor {
+    return new HslColor(
+      lerp(col1.h, col2.h, factor),
+      lerp(col1.s, col2.s, factor),
+      lerp(col1.l, col2.l, factor),
+      lerp(col1.a, col2.a, factor),
     );
   }
 
