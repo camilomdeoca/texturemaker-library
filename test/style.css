@@ -1,0 +1,37 @@
+.centerbox {
+  /* flexbox, por favor */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.log {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+canvas {
+  /* border-radius: 30px;  Border radiuses don't seem to work with putImageData */
+  box-shadow: 0 0 10px #777;
+  width: 512px;
+  height: 512px;
+  image-rendering: pixelated;
+}
+
+body {
+  background-color: #eee;
+}
