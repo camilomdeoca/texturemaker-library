@@ -17,7 +17,7 @@ export class PerlinNoiseNode implements IGeneratorNode {
 
   private recreatePerlinObject(): void {
     this._perlinNoise = new Perlin({
-      startingOctaveIndex: 0,
+      startingOctaveIndex: this._startingOctaveIndex,
       octavesWeights: this.octavesWeights,
       seed: this.seed,
       scale: this._scale
@@ -61,14 +61,13 @@ export class PerlinNoiseNode implements IGeneratorNode {
   }
 
   private genDefaultOctavesWeights(): number[] {
-    const defaultMaxWeights = 8;
-    const defaultMinWeights = 3;
-    const weights = Array<number>(defaultMaxWeights).fill(0);
+    const numOctaves = 4;
+    const weights = Array<number>(numOctaves);
 
-    let initialWeight = 1;
-    for (let i = defaultMinWeights - 1; i < defaultMaxWeights; i++) {
-      weights[i] = initialWeight;
-      initialWeight *= 0.5;
+    let weight = 1;
+    for (let i = 0; i < numOctaves; i++) {
+      weights[i] = weight;
+      weight *= 0.5;
     }
     return weights;
   }
