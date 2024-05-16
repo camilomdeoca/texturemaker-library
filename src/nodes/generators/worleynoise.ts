@@ -44,7 +44,7 @@ export class WorleyNoiseNode implements IGeneratorNode {
   }
 
   public getValueAt(position: Vector2): Color {
-    return new Color(this._worleyNoise.at(position))
+    return new Color(this._worleyNoise.at(position));
   }
 
   private _worleyNoise: Worley;

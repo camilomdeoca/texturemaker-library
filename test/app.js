@@ -5,8 +5,8 @@ import { Worker } from 'worker_threads';
 
 const threads = 3;
 const imageSize = {
-  width: 512,
-  height: 512,
+  width: 256,
+  height: 256,
 };
 
 const startSampleImage = async () => {

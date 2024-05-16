@@ -1,36 +1,42 @@
-import { PerlinNoiseNode, WorleyNoiseNode, SolidColorNode, ColorCorrectionNode, CombineNode, Color, ColorizeNode } from "../dist/index.js";
+import { PerlinNoiseNode, WorleyNoiseNode, SolidColorNode, ColorCorrectionNode, CombineNode, Color, ColorizeNode, WarpNode, BlurNode } from "../dist/index.js";
 import { Vector2 } from "vectors-typescript";
 import { parentPort, workerData } from 'worker_threads';
 
 const perlin = new PerlinNoiseNode();
-perlin.startingOctaveIndex = 2;
+perlin.startingOctaveIndex = 3;
 
 const worley = new WorleyNoiseNode();
-worley.numberOfPoints = 256;
+worley.numberOfPoints = 16;
 worley.pointGenAlgorithm = "hammersley";
 
-const colorCorrection = new ColorCorrectionNode();
-colorCorrection.input = perlin;
-colorCorrection.contrast = 1.8;
+const warp = new WarpNode();
+warp.inputs.warper = perlin;
+warp.inputs.warped = worley;
 
 const colorize = new ColorizeNode();
-colorize.input = colorCorrection;
+colorize.input = warp;
 colorize.colors = [
   {
     lightness: 0,
-    color: new Color(1, 0, 0, 1),
+    color: new Color(0, 0.5, 1, 1),
   },
   {
-    lightness: 0.5,
-    color: new Color(0, 1, 0, 1),
+    lightness: 0.3,
+    color: new Color(0, 0.7, 1, 1),
   },
   {
-    lightness: 1,
-    color: new Color(0, 0, 1, 1),
+    lightness: 0.4,
+    color: new Color(0, 0.5, 1, 1),
+  },
+  {
+    lightness: 0.9,
+    color: new Color(0, 1, 1, 1),
   },
 ];
 
-console.log(colorize.getValueAt(new Vector2(0, 0)));
+const blur = new BlurNode();
+blur.input = colorize;
+blur.radius = 1;
 
 const finalNode = colorize;
 const pixels = new Uint8ClampedArray(workerData.sharedBuffer);
