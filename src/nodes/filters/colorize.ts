@@ -28,7 +28,7 @@ export class ColorizeNode implements IFilterNode {
 
     // Binary search for the control points closest to the input lightness value
     while (indexHigh - indexLow > 1) {
-      const index = Math.floor((indexHigh - indexLow) / 2);
+      const index = Math.floor((indexHigh + indexLow) / 2);
       if (this.colors[index].lightness > lightness) indexHigh = index;
       else if (this.colors[index].lightness < lightness) indexLow = index;
       else return this.colors[index].color; // In the case it is exactly at a control point
