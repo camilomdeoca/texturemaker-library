@@ -13,8 +13,9 @@ export class WarpNode implements IFilterNode {
     let dx = (lightness - lightnessX) / WARP_STEP;
     let dy = (lightness - lightnessY) / WARP_STEP;
 
-    return this.inputs.warped.getValueAt(Vector2.add(position, new Vector2(dx, dy).times(1/256).times(0.5)));
+    return this.inputs.warped.getValueAt(Vector2.add(position, new Vector2(dx, dy).times(this.strength * (1 / 1000))));
   }
 
   public inputs: { warper: INode, warped: INode } = { warper: undefined, warped: undefined };
+  public strength: number = 1;
 }
