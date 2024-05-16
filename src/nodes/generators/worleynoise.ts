@@ -1,7 +1,7 @@
 import { Vector2 } from "vectors-typescript";
 import { Color } from "../../color.js";
 import { IGeneratorNode } from "../generatornode.js";
-import { PointGenerationAlgorithm, Worley } from "noises-library";
+import { WorleyPointGenerationAlgorithm, Worley, WorleyPointSelectionCriteria } from "noises-library";
 
 export class WorleyNoiseNode implements IGeneratorNode {
   public constructor() {
@@ -26,13 +26,22 @@ export class WorleyNoiseNode implements IGeneratorNode {
     return this._numberOfPoints;
   }
 
-  public set pointGenAlgorithm(pointGenAlgorithm: PointGenerationAlgorithm) {
+  public set pointGenAlgorithm(pointGenAlgorithm: WorleyPointGenerationAlgorithm) {
     this._pointGenAlgorithm = pointGenAlgorithm;
     this.recreateWorleyObject();
   }
 
-  public get pointGenAlgorithm(): PointGenerationAlgorithm {
+  public get pointGenAlgorithm(): WorleyPointGenerationAlgorithm {
     return this._pointGenAlgorithm;
+  }
+
+  public set pointSelectionCriteria(pointSelectionCriteria: WorleyPointSelectionCriteria) {
+    this._pointSelectionCriteria = pointSelectionCriteria;
+    this.recreateWorleyObject();
+  }
+
+  public get pointSelectionCriteria(): WorleyPointSelectionCriteria {
+    return this._pointSelectionCriteria;
   }
 
   private recreateWorleyObject() {
@@ -40,6 +49,7 @@ export class WorleyNoiseNode implements IGeneratorNode {
       seed: this.seed,
       numPoints: this.numberOfPoints,
       pointGenAlgorithm: this.pointGenAlgorithm,
+      pointSelectionCriteria: this.pointSelectionCriteria,
     });
   }
 
@@ -48,7 +58,8 @@ export class WorleyNoiseNode implements IGeneratorNode {
   }
 
   private _worleyNoise: Worley;
-  public _seed: string = "defaultseed";
-  public _numberOfPoints: number = 32;
-  public _pointGenAlgorithm: PointGenerationAlgorithm = "halton";
+  private _seed: string = "defaultseed";
+  private _numberOfPoints: number = 32;
+  private _pointGenAlgorithm: WorleyPointGenerationAlgorithm = "halton";
+  private _pointSelectionCriteria: WorleyPointSelectionCriteria = "closest";
 };

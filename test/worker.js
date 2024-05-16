@@ -1,36 +1,39 @@
-import { PerlinNoiseNode, WorleyNoiseNode, SolidColorNode, ColorCorrectionNode, CombineNode, Color, ColorizeNode, WarpNode, BlurNode } from "../dist/index.js";
+import { PerlinNoiseNode, WorleyNoiseNode, Color, ColorizeNode, WarpNode, BlurNode } from "../dist/index.js";
 import { Vector2 } from "vectors-typescript";
 import { parentPort, workerData } from 'worker_threads';
 
 const perlin = new PerlinNoiseNode();
 perlin.startingOctaveIndex = 3;
+perlin.octavesWeights = [1, 0.6, 0.2];
 
 const worley = new WorleyNoiseNode();
-worley.numberOfPoints = 16;
-worley.pointGenAlgorithm = "hammersley";
+worley.numberOfPoints = 5;
+worley.pointGenAlgorithm = "halton";
+worley.pointSelectionCriteria = "second-minus-closest";
 
 const warp = new WarpNode();
 warp.inputs.warper = perlin;
 warp.inputs.warped = worley;
+warp.strength = 1.5;
 
 const colorize = new ColorizeNode();
 colorize.input = warp;
 colorize.colors = [
   {
     lightness: 0,
+    color: new Color(0, 1, 1, 1),
+  },
+  {
+    lightness: 0.6,
     color: new Color(0, 0.5, 1, 1),
   },
   {
-    lightness: 0.3,
+    lightness: 0.7,
     color: new Color(0, 0.7, 1, 1),
   },
   {
-    lightness: 0.4,
+    lightness: 1,
     color: new Color(0, 0.5, 1, 1),
-  },
-  {
-    lightness: 0.9,
-    color: new Color(0, 1, 1, 1),
   },
 ];
 
