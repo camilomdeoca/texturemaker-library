@@ -14,12 +14,12 @@ worley.pointGenAlgorithm = WorleyPointGenerationAlgorithm.Random;
 worley.pointSelectionCriteria = WorleyPointSelectionCriteria.SecondMinusClosest;
 
 const warp = new WarpNode();
-warp.inputs["warper"] = perlin;
-warp.inputs["warped"] = worley;
+warp.inputs.set("warper", perlin);
+warp.inputs.set("warped", worley);
 warp.strength = 1.5;
 
 const colorize = new ColorizeNode();
-colorize.inputs["input"] = warp;
+colorize.inputs.set("input", warp);
 colorize.colors = [
   {
     lightness: 0,

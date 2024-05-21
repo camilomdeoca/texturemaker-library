@@ -12,7 +12,7 @@ export class ColorizeNode implements IFilterNode {
   constructor() { }
 
   getValueAt(position: Vector2): Color {
-    const colorIn = this.inputs["input"].getValueAt(position);
+    const colorIn = this.inputs.get("input").getValueAt(position);
     const lightness = colorIn.toHsl().l;
 
     let indexLow = 0;

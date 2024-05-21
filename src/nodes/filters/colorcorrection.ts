@@ -5,7 +5,7 @@ import { INode } from "../node.js";
 
 export class ColorCorrectionNode implements IFilterNode {
   public getValueAt(position: Vector2): Color {
-    const inColor = this.inputs["input"].getValueAt(position);
+    const inColor = this.inputs.get("input").getValueAt(position);
     let rgb = new Color(
       (inColor.r * 2 - 1) * this.contrast * 0.5 + 0.5,
       (inColor.g * 2 - 1) * this.contrast * 0.5 + 0.5,
