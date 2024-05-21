@@ -1,5 +1,5 @@
 import { Vector2 } from "vectors-typescript";
-import { Color, HslColor } from "../../color.js";
+import { Color } from "../../color.js";
 import { IFilterNode } from "../filternode.js";
 import { INode } from "../node.js";
 
@@ -12,7 +12,7 @@ export class ColorizeNode implements IFilterNode {
   constructor() { }
 
   getValueAt(position: Vector2): Color {
-    const colorIn = this.input.getValueAt(position);
+    const colorIn = this.inputs["input"].getValueAt(position);
     const lightness = colorIn.toHsl().l;
 
     let indexLow = 0;
@@ -56,5 +56,7 @@ export class ColorizeNode implements IFilterNode {
       color: new Color(1),
     },
   ];
-  public input: INode = undefined;
+  public readonly inputs: Map<string, INode> = new Map([
+    ["input", undefined],
+  ]);
 }

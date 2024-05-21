@@ -2,6 +2,7 @@ import { Vector2 } from "vectors-typescript";
 import { Color } from "../../color.js";
 import { IGeneratorNode } from "../generatornode.js";
 import { Perlin } from "noises-library";
+import { INode } from "../node.js";
 
 // TODO: Instead of recreating when a parameter changes set a boolean value that indicates that the
 // Perlin object needs to be recreated
@@ -9,6 +10,10 @@ import { Perlin } from "noises-library";
 export class PerlinNoiseNode implements IGeneratorNode {
   constructor() {
     this.recreatePerlinObject();
+  }
+
+  get inputs(): Map<string, INode> {
+    return new Map();
   }
 
   getValueAt(position: Vector2): Color {

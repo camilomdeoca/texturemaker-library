@@ -17,7 +17,7 @@ export class BlurNode implements IFilterNode {
     for (let y = -this.radius * BLUR_STEP; y <= this.radius * BLUR_STEP; y += BLUR_STEP) {
       for (let x = -this.radius * BLUR_STEP; x <= this.radius * BLUR_STEP; x += BLUR_STEP) {
         if (x ** 2 + y ** 2 <= this.radius ** 2) {
-          const color = this.input.getValueAt(Vector2.add(position, new Vector2(x, y)));
+          const color = this.inputs["input"].getValueAt(Vector2.add(position, new Vector2(x, y)));
           sum.r += color.r ** 2;
           sum.g += color.g ** 2;
           sum.b += color.b ** 2;
@@ -39,5 +39,7 @@ export class BlurNode implements IFilterNode {
   }
 
   public radius: number = 1;
-  public input: INode = undefined;
+  public readonly inputs: Map<string, INode> = new Map([
+    ["input", undefined],
+  ]);
 }

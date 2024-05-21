@@ -5,7 +5,7 @@ import { INode } from "../node.js";
 
 export class ColorCorrectionNode implements IFilterNode {
   public getValueAt(position: Vector2): Color {
-    const inColor = this.input.getValueAt(position);
+    const inColor = this.inputs["input"].getValueAt(position);
     let rgb = new Color(
       (inColor.r * 2 - 1) * this.contrast * 0.5 + 0.5,
       (inColor.g * 2 - 1) * this.contrast * 0.5 + 0.5,
@@ -34,7 +34,9 @@ export class ColorCorrectionNode implements IFilterNode {
   public contrast: number = 1.0;
   public saturation: number = 1.0;
   public brightness: number = 1.0;
-  public input: INode = undefined;
+  public readonly inputs: Map<string, INode> = new Map([
+    ["input", undefined],
+  ]);
 
   private _invGamma: number = 1.0;
 }

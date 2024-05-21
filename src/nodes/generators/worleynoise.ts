@@ -2,10 +2,15 @@ import { Vector2 } from "vectors-typescript";
 import { Color } from "../../color.js";
 import { IGeneratorNode } from "../generatornode.js";
 import { WorleyPointGenerationAlgorithm, Worley, WorleyPointSelectionCriteria } from "noises-library";
+import { INode } from "../node.js";
 
 export class WorleyNoiseNode implements IGeneratorNode {
   public constructor() {
     this.recreateWorleyObject();
+  }
+
+  get inputs(): Map<string, INode> {
+    return new Map();
   }
 
   public set seed(seed: string) {

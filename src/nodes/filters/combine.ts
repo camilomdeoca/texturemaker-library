@@ -8,8 +8,8 @@ type BlendingMode = "rgb" | "hsl";
 export class CombineNode implements IFilterNode {
   public getValueAt(position: Vector2): Color {
     const factor = this.factor;
-    const col0 = this.inputs.first.getValueAt(position);
-    const col1 = this.inputs.second.getValueAt(position);
+    const col0 = this.inputs["first"].getValueAt(position);
+    const col1 = this.inputs["second"].getValueAt(position);
     if (this.blendingMode === "rgb")
       return this.blendRgb(col0, col1, factor);
     else if (this.blendingMode === "hsl")
@@ -33,6 +33,9 @@ export class CombineNode implements IFilterNode {
   }
 
   public blendingMode: BlendingMode = "hsl";
-  public inputs: { first: INode, second: INode } = { first: undefined, second: undefined };
+  public readonly inputs: Map<string, INode> = new Map([
+    ["first", undefined],
+    ["second", undefined],
+  ]);
   public factor: number = 0.5;
 }

@@ -12,12 +12,12 @@ worley.pointGenAlgorithm = "halton";
 worley.pointSelectionCriteria = "second-minus-closest";
 
 const warp = new WarpNode();
-warp.inputs.warper = perlin;
-warp.inputs.warped = worley;
+warp.inputs["warper"] = perlin;
+warp.inputs["warped"] = worley;
 warp.strength = 1.5;
 
 const colorize = new ColorizeNode();
-colorize.input = warp;
+colorize.inputs["input"] = warp;
 colorize.colors = [
   {
     lightness: 0,
