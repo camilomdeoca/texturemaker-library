@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "noises-library": "github:camilomdeoca/noises-library",
-    "vectors-typescript": "github:camilomdeoca/vectors-typescript",
-    "ws": "^8.17.0"
+    "vectors-typescript": "github:camilomdeoca/vectors-typescript"
   }
 }
