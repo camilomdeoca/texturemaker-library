@@ -65,6 +65,6 @@ export class WorleyNoiseNode implements IGeneratorNode {
   private _worleyNoise: Worley;
   private _seed: string = "defaultseed";
   private _numberOfPoints: number = 32;
-  private _pointGenAlgorithm: WorleyPointGenerationAlgorithm = "halton";
-  private _pointSelectionCriteria: WorleyPointSelectionCriteria = "closest";
+  private _pointGenAlgorithm: WorleyPointGenerationAlgorithm = WorleyPointGenerationAlgorithm.Random;
+  private _pointSelectionCriteria: WorleyPointSelectionCriteria = WorleyPointSelectionCriteria.Closest;
 };
