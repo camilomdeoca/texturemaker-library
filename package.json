@@ -8,12 +8,12 @@
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
-    "test": "npx nodemon --watch test/server.js test/server.js & tsc -w & npx nodemon -e js --ignore test/bundle.js --ignore src/ --exec \"npx esbuild test/test.js --bundle --outfile=test/bundle.js\"",
-    "testelectron": "npx electron --inspect=9229 test/app.js & tsc -w & npx nodemon -e js --ignore test/bundle.js --ignore src/ --exec \"npx esbuild test/script.js --bundle --outfile=test/bundle.js\""
+    "test": "npx electron --inspect=9229 test/app.js & tsc -w & npx nodemon -e js --ignore test/bundle.js --ignore src/ --exec \"npx esbuild test/script.js --bundle --outfile=test/bundle.js\""
   },
   "author": "Camilo Montes de Oca",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^20.12.12",
     "electron": "^30.0.3",
     "esbuild": "^0.20.2",
     "nodemon": "^3.1.0",
