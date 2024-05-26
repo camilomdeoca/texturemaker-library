@@ -49,11 +49,11 @@ export class ColorizeNode implements IFilterNode {
   public colors: ColorizeControlPoint[] = [
     {
       lightness: 0,
-      color: new Color(0),
+      color: new Color(0, 0, 0, 1),
     },
     {
       lightness: 1,
-      color: new Color(1),
+      color: new Color(1, 1, 1, 1),
     },
   ];
   public readonly inputs: Map<string, INode | undefined> = new Map([
