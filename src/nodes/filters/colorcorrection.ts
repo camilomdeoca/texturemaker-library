@@ -34,7 +34,7 @@ export class ColorCorrectionNode implements IFilterNode {
   public contrast: number = 1.0;
   public saturation: number = 1.0;
   public brightness: number = 1.0;
-  public readonly inputs: Map<string, INode> = new Map([
+  public readonly inputs: Map<string, INode | undefined> = new Map([
     ["input", undefined],
   ]);
 

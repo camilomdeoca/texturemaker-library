@@ -16,7 +16,7 @@ export class WarpNode implements IFilterNode {
     return this.inputs.get("warped").getValueAt(Vector2.add(position, new Vector2(dx, dy).times(this.strength * (1 / 1000))));
   }
 
-  public inputs: Map<string, INode> = new Map([
+  public inputs: Map<string, INode | undefined> = new Map([
     ["warper", undefined],
     ["warped", undefined]
   ]);

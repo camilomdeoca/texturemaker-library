@@ -33,7 +33,7 @@ export class CombineNode implements IFilterNode {
   }
 
   public blendingMode: BlendingMode = "hsl";
-  public readonly inputs: Map<string, INode> = new Map([
+  public readonly inputs: Map<string, INode | undefined> = new Map([
     ["first", undefined],
     ["second", undefined],
   ]);

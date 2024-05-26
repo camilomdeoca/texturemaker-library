@@ -7,7 +7,7 @@ export class SolidColorNode implements IGeneratorNode {
   public getValueAt(_position: Vector2): Color {
     return this.color;
   }
-  get inputs(): Map<string, INode> {
+  get inputs(): Map<string, INode | undefined> {
     return new Map();
   }
 

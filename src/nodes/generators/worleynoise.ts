@@ -9,7 +9,7 @@ export class WorleyNoiseNode implements IGeneratorNode {
     this.recreateWorleyObject();
   }
 
-  get inputs(): Map<string, INode> {
+  get inputs(): Map<string, INode | undefined> {
     return new Map();
   }
 

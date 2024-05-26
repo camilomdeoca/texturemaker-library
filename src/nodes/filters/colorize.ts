@@ -56,7 +56,7 @@ export class ColorizeNode implements IFilterNode {
       color: new Color(1),
     },
   ];
-  public readonly inputs: Map<string, INode> = new Map([
+  public readonly inputs: Map<string, INode | undefined> = new Map([
     ["input", undefined],
   ]);
 }

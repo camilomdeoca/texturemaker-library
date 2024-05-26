@@ -39,7 +39,7 @@ export class BlurNode implements IFilterNode {
   }
 
   public radius: number = 1;
-  public readonly inputs: Map<string, INode> = new Map([
+  public readonly inputs: Map<string, INode | undefined> = new Map([
     ["input", undefined],
   ]);
 }

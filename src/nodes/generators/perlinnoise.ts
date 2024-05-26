@@ -12,7 +12,7 @@ export class PerlinNoiseNode implements IGeneratorNode {
     this.recreatePerlinObject();
   }
 
-  get inputs(): Map<string, INode> {
+  get inputs(): Map<string, INode | undefined> {
     return new Map();
   }
 
