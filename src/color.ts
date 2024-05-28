@@ -45,6 +45,16 @@ export class Color {
     return result;
   }
 
+  public toHex(): string {
+    let hex = "#";
+    const toClampedInt = (val: number): number => { return val < 0 ? 0 : val > 1 ? 255 : Math.round(val * 255); }
+    hex += toClampedInt(this.r).toString(16);
+    hex += toClampedInt(this.g).toString(16);
+    hex += toClampedInt(this.b).toString(16);
+    hex += toClampedInt(this.a).toString(16);
+    return hex;
+  }
+
   public static lerp(col1: Color, col2: Color, factor: number): Color {
     return new Color(
       Math.sqrt(lerp(col1.r**2, col2.r**2, factor)),
@@ -54,7 +64,7 @@ export class Color {
     );
   }
 
-  public static fromHexRgb(hex: string): Color {
+  public static fromHex(hex: string): Color {
     if (hex[0] === "#")
       hex = hex.substring(1);
     if (hex.length < 8)
