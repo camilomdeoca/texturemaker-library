@@ -48,10 +48,10 @@ export class Color {
   public toHex(): string {
     let hex = "#";
     const toClampedInt = (val: number): number => { return val < 0 ? 0 : val > 1 ? 255 : Math.round(val * 255); }
-    hex += toClampedInt(this.r).toString(16);
-    hex += toClampedInt(this.g).toString(16);
-    hex += toClampedInt(this.b).toString(16);
-    hex += toClampedInt(this.a).toString(16);
+    hex += toClampedInt(this.r).toString(16).padStart(2, '0');
+    hex += toClampedInt(this.g).toString(16).padStart(2, '0');
+    hex += toClampedInt(this.b).toString(16).padStart(2, '0');
+    hex += toClampedInt(this.a).toString(16).padStart(2, '0');
     return hex;
   }
 
