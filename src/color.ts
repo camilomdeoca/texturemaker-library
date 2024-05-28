@@ -54,6 +54,19 @@ export class Color {
     );
   }
 
+  public static fromHexRgb(hex: string): Color {
+    if (hex[0] === "#")
+      hex = hex.substring(1);
+    if (hex.length < 8)
+      hex += "ff";
+    return new Color(
+      parseInt(hex.substring(0, 2), 16) / 255,
+      parseInt(hex.substring(2, 4), 16) / 255,
+      parseInt(hex.substring(4, 6), 16) / 255,
+      parseInt(hex.substring(6, 8), 16) / 255,
+    );
+  }
+
   public r: number; // in range [0, 1]
   public g: number; // in range [0, 1]
   public b: number; // in range [0, 1]
