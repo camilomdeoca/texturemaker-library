@@ -9,12 +9,13 @@ export interface ColorizeControlPoint {
 };
 
 export class ColorizeNode implements IFilterNode {
-  constructor() { }
-
-  getValueAt(position: Vector2): Color {
+  public getValueAt(position: Vector2): Color {
     const colorIn = this.inputs.get("input").getValueAt(position);
     const lightness = colorIn.toHsl().l;
+    return this.getColorMappedToLightness(lightness);
+  }
 
+  public getColorMappedToLightness(lightness: number): Color {
     let indexLow = 0;
     let indexHigh = this.colors.length - 1;
 
