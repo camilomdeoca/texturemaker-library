@@ -4,14 +4,15 @@ import { Vector2 } from "vectors-typescript";
 import { parentPort, workerData } from 'worker_threads';
 
 const perlin = new PerlinNoiseNode();
-perlin.startingOctaveIndex = 3;
-perlin.octavesWeights = [1, 0.6, 0.2];
+perlin.startingOctaveIndex = 0;
+perlin.octavesWeights = [1, 0.5, 0.25, 0.125, 0.0625];
+//perlin.octavesWeights = [1, 0.6, 0.2];
 
 const worley = new WorleyNoiseNode();
 worley.numberOfPoints = 9;
 worley.seed = "14a";
 worley.pointGenAlgorithm = WorleyPointGenerationAlgorithm.Random;
-worley.pointSelectionCriteria = WorleyPointSelectionCriteria.SecondMinusClosest;
+worley.pointSelectionCriteria = WorleyPointSelectionCriteria.Closest;
 
 const warp = new WarpNode();
 warp.inputs.set("warper", perlin);
@@ -19,19 +20,15 @@ warp.inputs.set("warped", worley);
 warp.strength = 1.5;
 
 const colorize = new ColorizeNode();
-colorize.inputs.set("input", warp);
+colorize.inputs.set("input", worley);
 colorize.colors = [
   {
     lightness: 0,
-    color: new Color(0, 0.8, 1, 1),
+    color: new Color(0, 1, 0, 1),
   },
   {
-    lightness: 0.3,
-    color: new Color(0, 0.6, 1, 1),
-  },
-  {
-    lightness: 0.7,
-    color: new Color(0, 0.8, 1, 1),
+    lightness: 1,
+    color: new Color(1, 0, 1, 1),
   },
 ];
 

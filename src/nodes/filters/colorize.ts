@@ -41,7 +41,7 @@ export class ColorizeNode implements IFilterNode {
     return Color.lerp(
       this.colors[indexLow].color,
       this.colors[indexHigh].color,
-      factor
+      factor**2
     );
   }
 
