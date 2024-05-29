@@ -67,14 +67,25 @@ export class Color {
   public static fromHex(hex: string): Color {
     if (hex[0] === "#")
       hex = hex.substring(1);
-    if (hex.length < 8)
+    if (hex.length == 6)
       hex += "ff";
-    return new Color(
-      parseInt(hex.substring(0, 2), 16) / 255,
-      parseInt(hex.substring(2, 4), 16) / 255,
-      parseInt(hex.substring(4, 6), 16) / 255,
-      parseInt(hex.substring(6, 8), 16) / 255,
-    );
+    else if (hex.length == 3)
+      hex += "f";
+
+    if (hex.length == 8)
+      return new Color(
+        parseInt(hex.substring(0, 2), 16) / 255,
+        parseInt(hex.substring(2, 4), 16) / 255,
+        parseInt(hex.substring(4, 6), 16) / 255,
+        parseInt(hex.substring(6, 8), 16) / 255,
+      );
+    else if (hex.length == 4)
+      return new Color(
+        parseInt(hex.substring(0, 1), 16) / 15,
+        parseInt(hex.substring(1, 2), 16) / 15,
+        parseInt(hex.substring(2, 3), 16) / 15,
+        parseInt(hex.substring(3, 4), 16) / 15,
+      );
   }
 
   public r: number; // in range [0, 1]
